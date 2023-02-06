@@ -1,0 +1,45 @@
+{% extends 'navigation.html' %}
+{% block body %}
+
+<center><h2 style = "font-family : 'Monotype Corsiva' ; color : #E6120E ; font-weight : bold;margin-top:2%">View User Reg. Request</h2></center><hr>
+<div class="container" style="margin-top:5%">
+</div>
+ <div class="container">
+<table class="table" id="myTable">
+  <thead  class="thead-dark">
+  <tr>
+    <th>Sr. No</th>
+    <th>Full Name</th>
+    <th>Email</th>
+    <th>Contact</th>
+    <th>Assign Status</th>
+    <th>View Detail</th>
+  </tr>
+  </thead>
+   <tbody>
+
+{% for i in pro %}
+    {% ifequal i.signup.status.status "pending" %}
+  <tr>
+      <td>{{forloop.counter}}</td>
+    <td>{{i.signup.user.first_name}} {{i.profile.signup.user.last_name}}</td>
+    <td>{{i.signup.user.email}}</td>
+    <td>{{i.signup.contact}}</td>
+      <td><a href="{% url 'edit_status' i.signup.id %}"><button class="button button1" id="#delete">Assign_status</button></a></td>
+      <td><a href="{% url 'profile1' i.signup.user.id %}"><button class="button button1" id="#delete">view detail</button></a></td>
+  </tr>
+ {% endifequal %}
+   {% endfor %}
+
+    </tbody>
+</table>
+
+ </div>
+
+<script>
+            var el_up = document.getElementById("GFG_UP");
+
+            el_up.innerHTML =
+                "Click on the LINK for further confirmation.";
+</script>
+{% endblock %}

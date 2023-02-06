@@ -1,0 +1,26 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+<div class="container">
+    <h2  style = "font-family : 'Monotype Corsiva' ; color : #E6120E ; font-weight : bold;margin-top:2%" align="center">Edit Religion</h2><hr>
+
+<div class="container-fluid" style="width:70%;margin-top:10%">
+<form method="post" action="">
+    {% csrf_token %}
+  <div class="form-group col-md-12">
+    <label for="exampleInputEmail1">Religion</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="religion" value="{{religion.religion}}">
+  </div>
+  <button type="submit" class="btn btn-primary">Update</button>
+</form>
+</div>
+</div>
+
+{% if error %}
+<script>
+    alert('Update religion successfully');
+    window.location="{% url 'view_religion' %}";
+</script>
+{% endif %}
+
+{% endblock %}

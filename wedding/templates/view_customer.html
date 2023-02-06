@@ -1,0 +1,52 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block body %}
+
+<style>
+.mybtnone:hover{background-color : #800000;
+color : #429E00 ; font-weight : bold
+}
+
+.zoom:hover {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(2.5);
+}
+</style>
+
+<div class="container-fluid">
+	  {% if is_related %}
+      <center><h2 style = "font-family : 'Monotype Corsiva' ; color : #E6120E ; font-weight : bold;margin-top:2%">Recommended Profiles</h2>(<a href="{% url 'view_customer' %}?a=1">View All</a>)</center>
+	{% else %}
+	<center><h2 style = "font-family : 'Monotype Corsiva' ; color : #E6120E ; font-weight : bold;margin-top:2%">Profiles</h2>(<a href="{% url 'view_customer' %}">View Recommended</a>)</center>
+	{% endif %}
+<hr>
+	{% if is_rel_empty %}
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		<strong>Sorry!</strong> No recommended profile found.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	{% endif %}
+ <div class="container-fluid" style="margin-bottom:3%">
+	 <div class="row">
+			{% for j in pro %}
+		 {% ifnotequal sign.gen j.signup.gen %}
+				<div class="col-md-3" style="border-radius:6px;width:25%;margin-top:1%">
+					<center><img class="zoom" align="center" src="{{j.signup.image.url}}" style="width:160px;height:170px;float:center" alt="card-img">
+   						<h4 class="card-title">{{j.signup.user.first_name}} {{j.signup.user.last_name}}</h4>
+   						<p class="card-text">Age : {{j.age}}</p>
+						{% if j.similarity %}
+   						<p class="card-text">{{j.similarity}}% matched </p>
+						{% endif %}
+						<a href="{% url 'view_profile' j.id %}"><button type="submit" class="btn btn-primary mybtnone" style="float:center">View Profile</button></a></center>
+   				</div>
+		 {% endifnotequal %}
+			{% endfor %}
+		</div>
+	</div>
+ </div>
+
+      </div>
+{% endblock %}

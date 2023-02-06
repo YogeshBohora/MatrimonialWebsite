@@ -1,0 +1,164 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block body %}
+<style>
+.mybtnone:hover{background-color : #800000;
+color : #429E00 ; font-weight : bold
+}
+</style>
+<div class="container">
+    <h2 style = "font-family : 'Monotype Corsiva' ; color : #E6120E ; font-weight : bold;margin-top:3%" align="center">View Profiles <a href="{% url 'view_user' %}">Back</a></h2><hr>
+
+<div  class="container-fluid" style="width:80%;margin-bottom:5%">
+    <hr><div class="row">
+        <div class="col-md-6">
+            <strong>Full Name:</strong>
+        </div>
+        <div class="col-md-6">
+            {{pro.signup.user.first_name}} {{pro.signup.user.last_name}}
+        </div>
+    </div><hr>
+     <div class="row">
+        <div class="col-md-6">
+            <strong>Customer Pic:</strong>
+        </div>
+        <div class="col-md-6">
+           <img src="{{pro.signup.image.url}}" style="width:150px;height:150px">
+        </div>
+
+    </div><hr>
+    <div class="row">
+        <div class="col-md-6">
+            <strong>Email Id :</strong>
+        </div>
+        <div class="col-md-6">
+            {{pro.signup.user.email}}
+        </div>
+    </div><hr>
+     <div class="row">
+        <div class="col-md-6">
+            <strong>Contact :</strong>
+        </div>
+        <div class="col-md-6">
+            {{pro.signup.contact}}
+        </div>
+     </div><hr>
+    <div class="row">
+        <div class="col-md-6">
+            <strong>Date of Birth :</strong>
+        </div>
+        <div class="col-md-6">
+            {{pro.signup.dob}}
+        </div>
+    </div><hr>
+     <div class="row">
+        <div class="col-md-6">
+            <strong>City :</strong>
+        </div>
+        <div class="col-md-6">
+            {{pro.signup.city}}
+        </div>
+     </div><hr><div class="row">
+        <div class="col-md-6">
+            <strong>Address :</strong>
+        </div>
+        <div class="col-md-6">
+            {{pro.signup.address}}
+        </div>
+    </div><hr>
+    <h3>Family & Other Detail</h3><hr>
+
+
+    <div class="row">
+        <div class="col-md-6">
+            <strong>Father's Name :</strong>
+        </div>
+        <div class="col-md-6">
+            {{pro.f_name}}
+        </div>
+     </div><hr><div class="row">
+        <div class="col-md-6">
+            <strong>Mother's Name :</strong>
+        </div>
+        <div class="col-md-6">
+            {{pro.m_name}}
+        </div>
+    </div><hr><div class="row">
+        <div class="col-md-6">
+            <strong>Father's Contact :</strong>
+        </div>
+        <div class="col-md-6">
+            {{pro.f_contact}}
+        </div>
+     </div><hr><div class="row">
+        <div class="col-md-6">
+            <strong>Work Address :</strong>
+        </div>
+        <div class="col-md-6">
+            {{pro.work_address}}
+        </div>
+    </div><hr><div class="row">
+        <div class="col-md-6">
+            <strong>Hobby :</strong>
+        </div>
+        <div class="col-md-6">
+            {{pro.hobby}}
+        </div>
+     </div><hr><div class="row">
+        <div class="col-md-6">
+            <strong>Occupation :</strong>
+        </div>
+        <div class="col-md-6">
+            {{pro.occupation}}
+        </div>
+    </div><hr><div class="row">
+        <div class="col-md-6">
+            <strong>Salary :</strong>
+        </div>
+        <div class="col-md-6">
+            {{pro.salary}}
+        </div>
+     </div><hr><div class="row">
+        <div class="col-md-6">
+            <strong>Qualification :</strong>
+        </div>
+        <div class="col-md-6">
+            {{pro.qualification}}
+        </div>
+    </div><hr><div class="row">
+        <div class="col-md-6">
+            <strong>Religion :</strong>
+        </div>
+        <div class="col-md-6">
+            {{pro.religion.religion}}
+        </div>
+     </div><hr><div class="row">
+        <div class="col-md-6">
+            <strong>Family Type :</strong>
+        </div>
+        <div class="col-md-6">
+            {{pro.family_type}}
+        </div>
+    </div><hr>
+    <form action="" method="post">
+  {% csrf_token %}
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1"><strong>Write Message</strong></label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" name="message" rows="3"></textarea>
+  </div>
+
+        <button type="submit" class="btn btn-primary mybtnone">Send Message</button>
+
+    </form>
+
+</div>
+</div>
+
+{% if error %}
+<script>
+    alert('message send successfully');
+    window.location="{% url 'view_customer' %}"
+</script>
+
+{% endif %}
+{% endblock %}

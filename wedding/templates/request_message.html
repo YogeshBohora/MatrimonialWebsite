@@ -1,0 +1,40 @@
+{% extends 'navigation.html' %}
+{% block body %}
+
+<center><h2 style = "font-family : 'Monotype Corsiva' ; color : #E6120E ; font-weight : bold;margin-top:2%">View Request Message</h2></center><hr>
+<div class="container" style="margin-top:5%">
+</div>
+ <div class="container">
+<table class="table table-bordered" id="myTable">
+  <thead>
+  <tr>
+    <th>Sr. No</th>
+    <th>Send By</th>
+    <th>Message</th>
+    <th>View Detail</th>
+  </tr>
+  </thead>
+   <tbody>
+
+{% for i in pro %}
+
+  <tr>
+      <td>{{forloop.counter}}</td>
+    <td>{{i.send_user}}</td>
+    <td>{{i.message1}}</td>
+      <td><a href="{% url 'view_profile1' i.send_user.id %}"><button class="button button1" id="#delete">View_detail</button></a></td>
+  </tr>
+   {% endfor %}
+
+    </tbody>
+</table>
+
+ </div>
+
+<script>
+            var el_up = document.getElementById("GFG_UP");
+
+            el_up.innerHTML =
+                "Click on the LINK for further confirmation.";
+        </script>
+{% endblock %}
